@@ -1,12 +1,14 @@
 import React from 'react';
 import PropType from 'prop-types'
+
 import LocalizedNumberParser from 'localized-number-parser'
+// import { dump } from './helpers'
 
 export default class LocalizedNumberInput extends React.Component {
 	constructor(props) {
 		super(props)
-		this.onError = typeof props.onError === 'function' ? props.onError.bind(this) : (() => {})
-		this.onUpdate = typeof props.onUpdate === 'function' ? props.onUpdate.bind(this) : (() => {})
+		this.props = props
+		this.onChange = this.onChange.bind(this)
 	}
 
 	render() {
@@ -14,7 +16,9 @@ export default class LocalizedNumberInput extends React.Component {
 	}
 
 	onChange(ev) {
-		this.onError()
+		// if (typeof this.props.onError === 'function') {
+			this.props.onError()
+		// }
 	}
 }
 
