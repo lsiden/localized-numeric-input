@@ -1,4 +1,4 @@
-# local-number
+# localized-number-input
 Edit numbers in format of locale, honoring local conventions for thousands and decimal separators,
 with en-US as fallback.
 
