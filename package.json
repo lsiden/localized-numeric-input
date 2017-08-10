@@ -19,7 +19,9 @@
     "url": "https://github.com/lsiden/local-number-input/issues"
   },
   "homepage": "https://github.com/lsiden/local-number-input#readme",
+  "entry": "dist/index.bundle.js",
   "dependencies": {
+    "localized-number-parser": "https://github.com/lsiden/localized-number-parser",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "webpack": "^3.5.3"
@@ -33,11 +35,18 @@
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
     "react-test-renderer": "^15.6.1",
-    "regenerator-runtime": "^0.10.5",
-    "webpack-dev-server": "^2.7.1"
+    "regenerator-runtime": "^0.10.5"
   },
   "babel": {
-    "presets": ["es2015", "react"]
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   },
   "scripts": {
     "test": "jest"
