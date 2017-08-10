@@ -1,5 +1,6 @@
 # local-number
-Edit numbers in format of locale or en-US.
+Edit numbers in format of locale, honoring local conventions for thousands and decimal separators,
+with en-US as fallback.
 
 ## Description
 

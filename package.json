@@ -1,0 +1,45 @@
+{
+  "name": "localized-number-input",
+  "version": "1.0.0",
+  "description": "Reeact component to edit numeric values in format of local honoring thousands and decimal separators, with en-US as fallback.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsiden/local-number-input.git"
+  },
+  "keywords": [
+    "local",
+    "numeric",
+    "edit",
+    "component"
+  ],
+  "author": "Lawrence Siden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lsiden/local-number-input/issues"
+  },
+  "homepage": "https://github.com/lsiden/local-number-input#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.5.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "jest": "^20.0.4",
+    "react-test-renderer": "^15.6.1",
+    "regenerator-runtime": "^0.10.5",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "babel": {
+    "presets": ["es2015", "react"]
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
