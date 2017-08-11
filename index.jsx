@@ -1,28 +1,36 @@
 import React from 'react';
 import PropType from 'prop-types'
+import classnames from 'classnames'
 
 import LocalizedNumberParser from 'localized-number-parser'
-// import { dump } from './helpers'
+import { dump } from './helpers'
 
 export default class LocalizedNumberInput extends React.Component {
 	constructor(props) {
 		super(props)
-		this.props = props
+		this.onUpdate = props.onUpdate
+		this.state = {
+			isValid: true,
+		}
 		this.onChange = this.onChange.bind(this)
+		this.parser = new LocalizedNumberParser('en-US')
 	}
 
 	render() {
-		return <input type="text" onChange={this.onChange}></input>
+		const cn = classnames({ invalid: !this.state.isValid })
+		return <input type="text" onChange={this.onChange} className={cn}></input>
 	}
 
 	onChange(ev) {
-		// if (typeof this.props.onError === 'function') {
-			this.props.onError()
-		// }
+		let n = this.parser.parse(ev.target.value)
+		let isValid = Number.isFinite(n)
+		this.setState({ isValid: isValid })
+		if (isValid) {
+			this.onUpdate(n)
+		}
 	}
 }
 
 LocalizedNumberParser.propTypes = {
-	onError: PropType.func,
-	onUpdate: PropType.func,
+	source: PropType.number.isRequired,
 }

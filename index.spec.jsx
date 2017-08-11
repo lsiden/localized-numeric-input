@@ -7,45 +7,49 @@ import { dump } from './helpers'
 
 describe('LocalizedNumericInput', function() {
 	let component;
-	let onError;
-	let onUpdate;
+	const onUpdate = jest.fn();
 
 	beforeEach(function() {
-		onError = jest.fn()
-		onUpdate = jest.fn()
-		component = mount(<LocalizedNumericInput onError={onError} onUpdate={onUpdate}></LocalizedNumericInput>)
+		component = mount(<LocalizedNumericInput onUpdate={onUpdate}></LocalizedNumericInput>)
 	})
 
-	test('renders', function() {
-		expect(shallow(<LocalizedNumericInput />).contains('<input '))
+	it('renders', function() {
+		expect(component).toBeTruthy()
 	})
 
-	test('state.value is undefined after invalid input', function() {
-		component.value = 'foo bar'
-		change(component)
-		expect(component.state.value).toBeUndefined()
+	it('sets invalid classname to false when first rendered with no value', function() {
+		expect(component.hasClass('invalid')).toBeFalsy()
 	})
 
-	test('calls onError handler when test detects invalid input', function() {
-		component.value = 'foo bar'
-		change(component)
-		expect(onError.mock.calls.length).toBeGreaterThan(0)
+	it('sets invalid classname to true after given invalid input', function() {
+		changeValue(component, '123 456')
+		expect(component.hasClass('invalid')).toBeTruthy()
+	})
+
+	it('does not call component.onUpdate after given invalid input', function() {
+		changeValue(component, '456 789')
 		expect(onUpdate.mock.calls.length).toBe(0)
 	})
 
-	test('state.value is defined after valid input', function() {
-		component.value = '123,456.78'
-		change(component)
-		expect(component.state.value).toBe(123456.78)
+	it('calls component.onUpdate wtih new value after given valid input', function() {
+		changeValue(component, '1,123,456.78')
+		expect(onUpdate.mock.calls.length).toBe(1)
+		expect(onUpdate.mock.calls[0][0]).toBe(1123456.78)
 	})
 
-	test('calls onUpdate handler when it detects valid input', function() {
-		component.value = '123,456.78'
-		expect(onError.mock.calls.length).toBe(0)
-		expect(onUpdate.mock.calls.length).toBeGreaterThan(0)
+	it('sets invalid classname to false after given valid input', function() {
+		changeValue(component, '1,123,456.78')
+		expect(component.hasClass('invalid')).toBeFalsy
 	})
+
+	it('sets invalid classname to true after updated with empty input', function() {
+		changeValue(component, '1')
+		changeValue(component, '')
+		expect(component.hasClass('invalid')).toBeTruthy()
+	})
+
 })
 
-function change(component) {
-	ReactTestUtils.Simulate.change(component.getDOMNode());
+function changeValue(component, value) {
+	component.simulate('change', {target: {value: value}})
 }

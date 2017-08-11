@@ -21,6 +21,7 @@
   "homepage": "https://github.com/lsiden/local-number-input#readme",
   "entry": "dist/index.bundle.js",
   "dependencies": {
+    "classnames": "^2.2.5",
     "localized-number-parser": "https://github.com/lsiden/localized-number-parser",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
