@@ -5,7 +5,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import LocalizedNumericInput from './index'
 import { dump } from './helpers'
 
-describe('LocalizedNumericInput', function() {
+describe('LocalizedNumericInput in en-US locale', function() {
 	let component;
 	const onUpdate = jest.fn();
 
@@ -48,6 +48,9 @@ describe('LocalizedNumericInput', function() {
 		expect(component.hasClass('invalid')).toBeTruthy()
 	})
 
+})
+
+describe('LocalizedNumericInput in de locale', function() {
 })
 
 function changeValue(component, value) {
